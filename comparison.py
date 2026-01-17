@@ -5,7 +5,7 @@ from network import NeuralNetwork
 def Comparion():
     X_train, y_train, X_val, y_val = prepare_data()
     
-    hidden_nodes, learning_rate = 10, 0.1  
+    hidden_nodes, learning_rate = 10, 0.01 
     epochs = 200   
     
     plt.figure(figsize=(10, 6))
@@ -22,7 +22,7 @@ def Comparion():
     plt.plot(b_train_loss, label='Batch Train Loss', color='blue')
     plt.plot(b_val_loss, label='Batch Val Loss', color='blue', linestyle='--')
 
-    plt.title('Comparison: Single Update vs Batch Update')
+    plt.title('Comparison: Single Update vs Batch Update (hidden_nodes=10, learning_rate=0.01)')
     plt.xlabel('Epochs')
     plt.ylabel('MSE Loss')
     plt.legend()

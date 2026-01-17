@@ -34,9 +34,9 @@ def run(update_type, epochs):
 
             if h == 5:
                 plt.figure(2)
-                p = plt.plot(train_losses, label=f'Train (LR={lrs})') # 训练损失
+                p = plt.plot(train_losses, label=f'Train (LR={lr})') # 训练损失
                 color = p[0].get_color()
-                plt.plot(val_losses, label=f'Val (LR={lrs})', color=color, linestyle='--') # 验证损失
+                plt.plot(val_losses, label=f'Val (LR={lr})', color=color, linestyle='--') # 验证损失
     
     best_config = max(results, key=results.get)
     print(f"\n[最佳配置] 节点数: {best_config[0]}, 学习率: {best_config[1]}, 验证集最高准确率: {results[best_config]:.4f}")

@@ -70,7 +70,6 @@ def prepare_data(test_size=0.3, random_seed=42):
 
 if __name__ == "__main__":
     X_train, y_train, X_val, y_val = prepare_data(test_size=0.3)
-    
     print(f"====================数据加载测试====================")
     print(f"训练集特征形状: {X_train.shape}") # 预期应为 (21, 3)
     print(f"训练集标签形状: {y_train.shape}") # 预期应为 (21, 3)
