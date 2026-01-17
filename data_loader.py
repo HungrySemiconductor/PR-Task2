@@ -1,14 +1,14 @@
 import numpy as np
 
+# 归一化
 def standardize(X):
-    """均值归一化：(x - mean) / std"""
     mean = np.mean(X, axis=0)
     std = np.std(X, axis=0)
     # 防止除以0
     return (X - mean) / (std + 1e-8)
 
+# 划分数据集
 def train_test_split(X, y, test_size=0.3, random_seed=42):
-    """手动实现数据集划分"""
     np.random.seed(random_seed)
     # 生成随机索引
     indices = np.arange(X.shape[0])
@@ -22,7 +22,7 @@ def train_test_split(X, y, test_size=0.3, random_seed=42):
     return X[train_idx], y[train_idx], X[val_idx], y[val_idx]
 
 def prepare_data(test_size=0.3, random_seed=42):
-    # 1. 原始数据 (基于实验报告要求)
+    # 原始数据 
     raw_data = {
         'class1': [
             [1.58, 2.32, -5.8], [0.67, 1.58, -4.78], [1.04, 1.01, -3.63],
@@ -47,7 +47,7 @@ def prepare_data(test_size=0.3, random_seed=42):
     X_list = []
     y_list = []
     
-    # 2. 标签编码：One-Hot 编码
+    # 标签编码：One-Hot 编码
     for i, (class_name, samples) in enumerate(raw_data.items()):
         X_list.extend(samples)
         for _ in range(len(samples)):
@@ -58,10 +58,10 @@ def prepare_data(test_size=0.3, random_seed=42):
     X = np.array(X_list, dtype=np.float32)
     y = np.array(y_list, dtype=np.float32)
     
-    # 3. 数据预处理
+    # 数据归归一化
     X = standardize(X)
     
-    # 4. 划分数据集
+    # 划分数据集
     X_train, y_train, X_val, y_val = train_test_split(
         X, y, test_size=test_size, random_seed=random_seed
     )
@@ -69,7 +69,6 @@ def prepare_data(test_size=0.3, random_seed=42):
     return X_train, y_train, X_val, y_val
 
 if __name__ == "__main__":
-    # 测试代码
     X_train, y_train, X_val, y_val = prepare_data(test_size=0.3)
     
     print(f"====================数据加载测试====================")
